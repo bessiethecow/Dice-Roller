@@ -77,10 +77,7 @@ const App = () => {
               console.log('clicked button');
               rollAll();
               if (rickRoll) {
-                setTimeout(
-                  () => window.open('https://youtu.be/QtBDL8EiNZo'),
-                  5000
-                );
+                window.open('https://youtu.be/QtBDL8EiNZo');
                 setRickRoll(false);
               }
             }}
