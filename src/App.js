@@ -14,7 +14,6 @@ const COLORS = [
 ];
 
 const App = () => {
-  const [rickRoll, setRickRoll] = useState(true);
   const [sumOfDice, setSumOfDice] = useState(0);
   const diceColor = COLORS[Math.floor(COLORS.length * Math.random())];
 
@@ -76,10 +75,6 @@ const App = () => {
             onClick={() => {
               console.log('clicked button');
               rollAll();
-              if (rickRoll) {
-                window.open('https://youtu.be/QtBDL8EiNZo');
-                setRickRoll(false);
-              }
             }}
             style={{
               marginTop: '1.3rem',
