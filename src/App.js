@@ -14,7 +14,7 @@ const COLORS = [
 ];
 
 const App = () => {
-  const [rickRoll, setRickRoll] = useState(false);
+  const [rickRoll, setRickRoll] = useState(true);
   const [sumOfDice, setSumOfDice] = useState(0);
   const diceColor = COLORS[Math.floor(COLORS.length * Math.random())];
 
@@ -37,7 +37,6 @@ const App = () => {
 
   useEffect(() => {
     rollAll();
-    setRickRoll(true);
   }, []);
 
   return (
@@ -80,7 +79,7 @@ const App = () => {
               if (rickRoll) {
                 setTimeout(
                   () => window.open('https://youtu.be/QtBDL8EiNZo'),
-                  15000
+                  5000
                 );
                 setRickRoll(false);
               }
