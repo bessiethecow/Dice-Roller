@@ -4,14 +4,23 @@ import ReactDice from 'react-dice-complete';
 import { useState, useEffect } from 'react';
 import 'react-dice-complete/dist/react-dice-complete.css';
 
-const App = () => {
-  const [sumOfDice, setSumOfDice] = useState(0);
+const COLORS = [
+  '#189AB4',
+  '#76B947',
+  '#9932CC',
+  '#E97451',
+  '#CC7722',
+  '#EF66EA',
+];
 
-  console.log(sumOfDice);
+const App = () => {
+  const [rickRoll, setRickRoll] = useState(false);
+  const [sumOfDice, setSumOfDice] = useState(0);
+  const diceColor = COLORS[Math.floor(COLORS.length * Math.random())];
 
   const prime = (n) => {
     for (let i = 2; i * i <= n; ++i) {
-      if (n % i == 0) {
+      if (n % i === 0) {
         return false;
       }
     }
@@ -19,7 +28,6 @@ const App = () => {
   };
 
   const rollDoneCallback = (num) => {
-    console.log(`You rolled a ${num}`);
     setSumOfDice(num);
   };
 
@@ -27,7 +35,10 @@ const App = () => {
     ReactDice.reactDice.rollAll();
   };
 
-  useEffect(rollAll, []);
+  useEffect(() => {
+    rollAll();
+    setRickRoll(true);
+  }, []);
 
   return (
     <>
@@ -36,7 +47,7 @@ const App = () => {
       </div>
       <div
         style={{
-          marginInline: '25rem',
+          marginInline: '20rem',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -46,9 +57,9 @@ const App = () => {
           rollTime={2.4}
           margin={30}
           dieSize={75}
-          numDice={15}
+          numDice={18}
           defaultRoll={6}
-          faceColor={'#800080'}
+          faceColor={diceColor}
           dotColor={'#FFFFFF'}
           rollDone={rollDoneCallback}
           ref={(dice) => (ReactDice.reactDice = dice)}
@@ -66,6 +77,13 @@ const App = () => {
             onClick={() => {
               console.log('clicked button');
               rollAll();
+              if (rickRoll) {
+                setTimeout(
+                  () => window.open('https://youtu.be/QtBDL8EiNZo'),
+                  15000
+                );
+                setRickRoll(false);
+              }
             }}
             style={{
               marginTop: '1.3rem',
@@ -107,7 +125,7 @@ const App = () => {
           <b>{sumOfDice}</b>{' '}
           <em>
             {(prime(sumOfDice) && ' (prime) ') ||
-              (sumOfDice > 0 && sumOfDice % 3 == 0 && '(multiple of 3)') ||
+              (sumOfDice > 0 && sumOfDice % 3 === 0 && '(multiple of 3)') ||
               ' (nothing special)'}
           </em>
         </p>
