@@ -14,6 +14,7 @@ const COLORS = [
 ];
 
 const App = () => {
+  const [numDice, setNumDice] = useState(7);
   const [sumOfDice, setSumOfDice] = useState(0);
   const diceColor = COLORS[Math.floor(COLORS.length * Math.random())];
 
@@ -45,7 +46,7 @@ const App = () => {
       </div>
       <div
         style={{
-          marginInline: '20rem',
+          marginInline: '16rem',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -55,7 +56,7 @@ const App = () => {
           rollTime={2.4}
           margin={30}
           dieSize={75}
-          numDice={18}
+          numDice={numDice}
           defaultRoll={6}
           faceColor={diceColor}
           dotColor={'#FFFFFF'}
@@ -99,17 +100,41 @@ const App = () => {
               color: 'white',
               borderRadius: '8px',
               padding: '15px 30px',
-              fontSize: '16px',
+              fontSize: '30px',
               cursor: 'pointer',
               marginLeft: '2%',
-              minWidth: '15%',
+              minWidth: '7%',
               marginRight: '34 %',
             }}
             onClick={() => {
-              window.open('https://youtu.be/QtBDL8EiNZo');
+              setNumDice((cur) => {
+                return cur + 1;
+              });
             }}
           >
-            special shuffle <em>roll</em>
+            +
+          </button>
+          <button
+            style={{
+              marginTop: '1.3rem',
+              backgroundColor: '#FF8A8A',
+              border: 'none',
+              color: 'white',
+              borderRadius: '8px',
+              padding: '15px 30px',
+              fontSize: '30px',
+              cursor: 'pointer',
+              marginLeft: '2%',
+              minWidth: '7%',
+              marginRight: '34 %',
+            }}
+            onClick={() => {
+              setNumDice((cur) => {
+                return Math.max(0, cur - 1);
+              });
+            }}
+          >
+            -
           </button>
         </div>
         <p style={{ fontSize: '2.5rem', textAlign: 'center' }}>
