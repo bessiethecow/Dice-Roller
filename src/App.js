@@ -53,7 +53,7 @@ const App = () => {
         }}
       >
         <ReactDice
-          rollTime={2.4}
+          rollTime={2}
           margin={30}
           dieSize={75}
           numDice={numDice}
